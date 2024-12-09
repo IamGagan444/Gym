@@ -14,9 +14,9 @@ const Info = () => {
         backgroundImage: `url('https://www.thirdspace.london/wp-content/uploads/2024/09/image-13-1920x1012.webp')`,
       }}
     >
-      <div className="ml-20">
+      <div className="ml-4 cu500:ml-10 sm:ml-20">
         <motion.div
-          className="text-white text-5xl font-bold mb-4 mt-10"
+          className="text-white text-3xl sm:text-5xl font-bold mb-4 mt-10"
           initial="hidden"
           animate="visible"
           variants={textVariants}
@@ -24,7 +24,7 @@ const Info = () => {
           THE ONLY
         </motion.div>
         <motion.div
-          className="text-yellow-500 text-5xl font-bold mb-4"
+          className="text-yellow-500 text-3xl sm:text-5xl font-bold mb-4"
           initial="hidden"
           animate="visible"
           variants={textVariants}
@@ -32,7 +32,7 @@ const Info = () => {
           IMPOSSIBLE
         </motion.div>
         <motion.div
-          className="text-white text-5xl font-bold mb-4"
+          className="text-white text-3xl sm:text-5xl font-bold mb-4"
           initial="hidden"
           animate="visible"
           variants={textVariants}
@@ -40,7 +40,7 @@ const Info = () => {
           JOURNEY IS
         </motion.div>
         <motion.div
-          className="text-white text-5xl font-bold"
+          className="text-white text-3xl sm:text-5xl font-bold"
           initial="hidden"
           animate="visible"
           variants={textVariants}
@@ -48,7 +48,7 @@ const Info = () => {
           THE ONE YOU
         </motion.div>
         <motion.div
-          className="text-yellow-500 text-5xl font-bold"
+          className="text-yellow-500 text-3xl sm:text-5xl font-bold"
           initial="hidden"
           animate="visible"
           variants={textVariants}

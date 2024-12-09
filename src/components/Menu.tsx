@@ -1,25 +1,24 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import { AlignJustify } from 'lucide-react';
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import { AlignJustify } from "lucide-react";
+type Anchor = "top" | "left" | "bottom" | "right";
 
 export default function Menu() {
-  
-    const [activeLink, setActiveLink] = React.useState('Home');
-    const navLinks = [
-        { label: "Home", onClick: () => setActiveLink('Home') },
-        { label: "About", onClick: () => setActiveLink('About') },
-        { label: "Contact", onClick: () => setActiveLink('Contact') },
-        { label: "Login", onClick: () => setActiveLink('Login') }
-      ];
+  const [activeLink, setActiveLink] = React.useState("Home");
+  const navLinks = [
+    { label: "Home", onClick: () => setActiveLink("Home") },
+    { label: "About", onClick: () => setActiveLink("About") },
+    { label: "Contact", onClick: () => setActiveLink("Contact") },
+    { label: "Login", onClick: () => setActiveLink("Login") },
+  ];
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -32,9 +31,9 @@ export default function Menu() {
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
         event &&
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
       ) {
         return;
       }
@@ -43,49 +42,42 @@ export default function Menu() {
     };
 
   const list = (anchor: Anchor) => (
-
-    
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{
+        width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+        background: "black",
+        color: "white",
+        height: "100vh",
+        padding:"20px"
+      }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-              <div className="hidden cu600:flex space-x-6 items-center">
-              {navLinks.map((link) => (
-                <div 
-                  key={link.label}
-                  className={`
-                    text-white hover:text-yellow-500 transition-colors cursor-pointer
-                    ${activeLink === link.label ? 'font-bold ' : ''}
-                  `}
-                  onClick={link.onClick}
-                >
-                  {link.label}
-                </div>
-              ))}
+        {navLinks.map((link, index) => (
+          <div className="">
+            <div
+              key={link.label}
+              className={`text-white hover:text-yellow-500 transition-colors cursor-pointer mx-20 my-4   ${activeLink === link.label ? "font-bold " : ""} `}
+              onClick={link.onClick}
+            >
+              {link.label}
             </div>
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+          </div>
         ))}
       </List>
       <Divider />
-      
     </Box>
   );
 
   return (
     <div>
-      {(['right'] as const).map((anchor) => (
+      {(["right"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}><AlignJustify /></Button>
+          <Button onClick={toggleDrawer(anchor, true)}>
+            <AlignJustify className="text-white" />
+          </Button>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
