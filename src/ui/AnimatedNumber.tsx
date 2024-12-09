@@ -1,7 +1,6 @@
-'use client';
-import { cn } from '../lib/utils';
-import { motion, SpringOptions, useSpring, useTransform } from 'motion/react';
-import { useEffect } from 'react';
+import { cn } from "../lib/utils";
+import { motion, SpringOptions, useSpring, useTransform } from "motion/react";
+import { useEffect } from "react";
 
 type AnimatedNumber = {
   value: number;
@@ -24,7 +23,7 @@ export function AnimatedNumber({
   }, [spring, value]);
 
   return (
-    <motion.span className={cn('tabular-nums', className)}>
+    <motion.span className={cn("tabular-nums", className)}>
       {display}
     </motion.span>
   );

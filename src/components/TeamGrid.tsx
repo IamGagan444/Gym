@@ -21,7 +21,6 @@ const teamMembers: TeamMember[] = [
   { id: 5, name: "Chris Wilson", image: image5 },
 ];
 
-// Animation Variants
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -57,12 +56,11 @@ export default function TeamGrid() {
   const isInView = useInView(sectionRef, { margin: "-50%" });
   const [hasEnteredView, setHasEnteredView] = useState(false);
 
-  // Manage animation trigger when the section enters the viewport
   useEffect(() => {
     if (isInView) {
-      setHasEnteredView(true); // Trigger animation
+      setHasEnteredView(true);
     } else {
-      setHasEnteredView(false); // Reset animation when out of view
+      setHasEnteredView(false);
     }
   }, [isInView]);
 
@@ -71,13 +69,11 @@ export default function TeamGrid() {
       className="min-h-screen bg-black p-8 relative overflow-hidden"
       ref={sectionRef}
     >
-      {/* Yellow diagonal accent with lower opacity */}
       <div className="absolute bottom-0 right-0 w-1/2 h-1/2 overflow-hidden pointer-events-none">
         <div className="absolute bottom-0 right-0 w-full h-full bg-yellow-400 opacity-20 transform rotate-45 translate-x-1/4 translate-y-1/4" />
       </div>
 
       <div className="relative z-10">
-        {/* Header */}
         <div className="mb-12 text-center relative">
           <motion.h1
             className="text-4xl md:text-6xl font-bold text-white mb-2 relative z-10"
@@ -97,7 +93,6 @@ export default function TeamGrid() {
           </motion.div>
         </div>
 
-        {/* Team Grid */}
         <motion.div
           className="flex flex-wrap justify-center items-center gap-8"
           variants={container}
@@ -115,7 +110,7 @@ export default function TeamGrid() {
                 alt={member.name}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
-              {/* Hover Overlay */}
+
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-75 transition-opacity duration-300 flex items-center justify-center">
                 <h3 className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {member.name}

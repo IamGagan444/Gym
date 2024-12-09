@@ -4,21 +4,22 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import { AlignJustify } from "lucide-react";
+import { useNavigate } from "react-router-dom"; 
+
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export default function Menu() {
   const [activeLink, setActiveLink] = React.useState("Home");
+  const navigate = useNavigate(); 
+
   const navLinks = [
-    { label: "Home", onClick: () => setActiveLink("Home") },
-    { label: "About", onClick: () => setActiveLink("About") },
-    { label: "Contact", onClick: () => setActiveLink("Contact") },
-    { label: "Login", onClick: () => setActiveLink("Login") },
+    { label: "Home", path: "/", onClick: () => handleNavigation("/") },
+    { label: "About", path: "/about", onClick: () => handleNavigation("/about") },
+    { label: "Contact", path: "/contact", onClick: () => handleNavigation("/contact") },
+    { label: "Login", path: "/login", onClick: () => handleNavigation("/login") },
   ];
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -37,9 +38,13 @@ export default function Menu() {
       ) {
         return;
       }
-
       setState({ ...state, [anchor]: open });
     };
+
+  const handleNavigation = (path: string) => {
+    setActiveLink(path);
+    navigate(path); 
+  };
 
   const list = (anchor: Anchor) => (
     <Box
@@ -48,19 +53,18 @@ export default function Menu() {
         background: "black",
         color: "white",
         height: "100vh",
-        padding:"20px"
+        padding: "20px",
       }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {navLinks.map((link, index) => (
-          <div className="">
+        {navLinks.map((link) => (
+          <div key={link.label}>
             <div
-              key={link.label}
-              className={`text-white hover:text-yellow-500 transition-colors cursor-pointer mx-20 my-4   ${activeLink === link.label ? "font-bold " : ""} `}
-              onClick={link.onClick}
+              className={`text-white hover:text-yellow-500 transition-colors cursor-pointer mx-20 my-4 ${activeLink === link.path ? "font-bold" : ""}`}
+              onClick={link.onClick} 
             >
               {link.label}
             </div>

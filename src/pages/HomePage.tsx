@@ -1,16 +1,14 @@
-import BeforeAfter from "../components/BeforeAfter";
 import Features from "../components/Features";
 import Info from "../components/Info";
+import Reviews from "../components/Reviews";
+import SubscriptionCards from "../components/SubscriptionCard";
 
 import TeamGrid from "../components/TeamGrid";
 import TeamTrain from "../components/TeamTrain";
-import Testimonial from "../components/Testimonial";
-
-
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="bg-black">
       <Info />
       <div className="hidden sm:block bg-black py-10">
         <TeamGrid />
@@ -19,12 +17,9 @@ const HomePage = () => {
       <div className="sm:hidden block">
         <TeamTrain />
       </div>
-      <Features/>
-     <div className="bg-black flex justify-between items-center">
-     <BeforeAfter/>
-     <Testimonial/>
-     </div>
-     
+      <Features />
+      <Reviews />
+      <SubscriptionCards />
     </div>
   );
 };

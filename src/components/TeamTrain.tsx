@@ -27,10 +27,8 @@ export default function TeamTrain() {
   const containerControls = useAnimation();
   const cardsControls = useAnimation();
 
-  // Duplicate team members for infinite scrolling
   const scrollingMembers = [...teamMembers, ...teamMembers];
 
-  // Animate the component's fade-in effect when it enters the viewport
   useEffect(() => {
     if (isInView) {
       containerControls.start({
@@ -39,11 +37,10 @@ export default function TeamTrain() {
         transition: { duration: 1, ease: "easeOut" },
       });
 
-      // Start card scrolling animation
       cardsControls.start({
         x: ["0%", "-100%"],
         transition: {
-          duration: scrollingMembers.length * 3, // Adjust scrolling speed
+          duration: scrollingMembers.length * 3,
           ease: "linear",
           repeat: Infinity,
         },
@@ -59,7 +56,6 @@ export default function TeamTrain() {
       className="min-h-screen bg-black p-8 relative overflow-hidden"
       ref={sectionRef}
     >
-      {/* Yellow diagonal accent */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={containerControls}
@@ -68,7 +64,6 @@ export default function TeamTrain() {
         <div className="absolute bottom-0 right-0 w-full h-full bg-yellow-400 opacity-20 transform rotate-45 translate-x-1/4 translate-y-1/4" />
       </motion.div>
 
-      {/* Header */}
       <motion.div
         className="relative z-10"
         initial={{ opacity: 0, y: 50 }}
@@ -83,7 +78,6 @@ export default function TeamTrain() {
           </div>
         </div>
 
-        {/* Scrolling Cards */}
         <div
           className="overflow-hidden"
           onMouseEnter={() => setIsHovered(true)}
@@ -91,9 +85,9 @@ export default function TeamTrain() {
         >
           <motion.div
             className="flex space-x-6"
-            animate={!isHovered ? cardsControls : undefined} // Stop animation on hover
+            animate={!isHovered ? cardsControls : undefined}
             style={{
-              width: `${scrollingMembers.length * 300}px`, // Adjust dynamic width
+              width: `${scrollingMembers.length * 300}px`,
             }}
           >
             {scrollingMembers.map((member, index) => (
@@ -106,7 +100,7 @@ export default function TeamTrain() {
                   alt={member.name}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                {/* Hover Overlay */}
+
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-75 transition-opacity duration-300 flex items-center justify-center">
                   <h3 className="text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {member.name}

@@ -6,7 +6,7 @@ import Features2 from "./Features2";
 export default function Features() {
   const controls = useAnimation();
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-50%" }); // Trigger animation when 50% is visible
+  const isInView = useInView(sectionRef, { once: true, margin: "-50%" });
 
   useEffect(() => {
     if (isInView) {
@@ -25,25 +25,22 @@ export default function Features() {
       animate={controls}
       className="bg-black py-10 space-y-10"
     >
-      {/* Header with animation */}
+  
       <motion.div
         className="mb-12 text-center relative"
         initial={{ opacity: 0, y: 20 }}
         animate={controls}
       >
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">
-          MEET THE TEAM
+         Featured Classes
         </h1>
         <div className="text-8xl md:text-9xl font-bold text-gray-800 absolute -top-8 md:-top-12 right-0 left-0 opacity-10 pointer-events-none">
           02
         </div>
       </motion.div>
 
-      {/* Infinite Slider */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={controls}
-      >
+    
+      <motion.div initial={{ opacity: 0, y: 50 }} animate={controls}>
         <InfiniteSlider gap={24} reverse>
           <img
             src="https://i.scdn.co/image/ab67616d00001e02ad24c5e36ddcd1957ad35677"
@@ -78,11 +75,8 @@ export default function Features() {
         </InfiniteSlider>
       </motion.div>
 
-      {/* Features2 Component */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={controls}
-      >
+    
+      <motion.div initial={{ opacity: 0, y: 50 }} animate={controls}>
         <Features2 />
       </motion.div>
     </motion.div>

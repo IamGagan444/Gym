@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
 import Menu from "./Menu";
 
 const Navbar: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [activeLink, setActiveLink] = useState("Home");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Show navbar when scrolling up
       if (currentScrollY < lastScrollY) {
         setIsVisible(true);
-      }
-      // Hide navbar when scrolling down
-      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
       }
 
@@ -45,10 +44,10 @@ const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { label: "Home", onClick: () => setActiveLink("Home") },
-    { label: "About", onClick: () => setActiveLink("About") },
-    { label: "Contact", onClick: () => setActiveLink("Contact") },
-    { label: "Login", onClick: () => setActiveLink("Login") },
+    { label: "Home", onClick: () => navigate("/") },
+    { label: "About", onClick: () => navigate("/about") },
+    { label: "Contact", onClick: () => navigate("/contact") },
+    { label: "Login", onClick: () => navigate("/login") },
   ];
 
   return (
@@ -64,7 +63,10 @@ const Navbar: React.FC = () => {
           <div className="w-full cu600:w-[80%] md:w-[70%] max-w-6xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 border border-gray-700 shadow-lg rounded-none cu600:rounded-full px-6 py-3 flex justify-between items-center">
             <div
               className="text-2xl font-bold text-white hover:text-yellow-500 transition-colors cursor-pointer"
-              onClick={() => setActiveLink("Home")}
+              onClick={() => {
+                setActiveLink("Home");
+                navigate("/");
+              }}
             >
               Gym Pro
             </div>
@@ -73,17 +75,19 @@ const Navbar: React.FC = () => {
               {navLinks.map((link) => (
                 <div
                   key={link.label}
-                  className={`
-                    text-white hover:text-yellow-500 transition-colors cursor-pointer
-                    ${activeLink === link.label ? "font-bold " : ""}
-                  `}
-                  onClick={link.onClick}
+                  className={`text-white hover:text-yellow-500 transition-colors cursor-pointer ${
+                    activeLink === link.label ? "font-bold" : ""
+                  }`}
+                  onClick={() => {
+                    setActiveLink(link.label);
+                    link.onClick();
+                  }}
                 >
                   {link.label}
                 </div>
               ))}
             </div>
-            <div className="cu600:hidden  block">
+            <div className="cu600:hidden block">
               <Menu />
             </div>
           </div>
