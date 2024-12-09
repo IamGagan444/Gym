@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import  { useRef, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import BeforeAfter from "./BeforeAfter";
 import Testimonial from "./Testimonial";
